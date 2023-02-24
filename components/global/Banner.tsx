@@ -11,7 +11,7 @@ const Banner = ({ isHome }: Props) => {
       <div className="layout">
         {isHome ? (
           <>
-            <h1 className="mb-2">
+            <h1 className="mb-2 text-5xl lg:text-6xl">
               Napcat <span className="text-gradient-1">Blog</span>
             </h1>
             <p>

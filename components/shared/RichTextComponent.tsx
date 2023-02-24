@@ -40,7 +40,7 @@ export const RichTextComponents = {
     h5: ({ children }: any) => (
       <h5 className="text-lg lg:text-xl font-semibold my-4">{children}</h5>
     ),
-    p: ({ children }: any) => (
+    normal: ({ children }: any) => (
       <p className="text-base font-normal py-1">{children}</p>
     ),
 
