@@ -1,21 +1,21 @@
 import { previewData } from "next/headers";
 import { groq } from "next-sanity";
 import { client } from "../../lib/sanity.client";
-import { PreviewSuspense } from "../../components/PreviewSuspense";
-import PreviewBlogList from "../../components/PreviewBlogList";
-import BlogList from "../../components/BlogList";
+import { PreviewSuspense } from "../../components/preview/PreviewSuspense";
+import PreviewHomePage from "../../components/pages/home/PreviewHomePage";
+import HomePage from "../../components/pages/home/HomePage";
 
 const query = groq`
 *[_type=="post"] {
   ...,
   author->,
   categories[]->
-} | order(_createdAt desc)
+} | order(publishedAt desc)
 `;
 
 export const revalidate = 60;
 
-const HomePage = async () => {
+const IndexRoute = async () => {
   if (previewData()) {
     return (
       <PreviewSuspense
@@ -27,13 +27,14 @@ const HomePage = async () => {
           </div>
         }
       >
-        <PreviewBlogList query={query} />
+        <PreviewHomePage query={query} />
       </PreviewSuspense>
     );
   }
 
   const posts = await client.fetch(query);
-  return <BlogList posts={posts} />;
+
+  return <HomePage posts={posts} />;
 };
 
-export default HomePage;
+export default IndexRoute;

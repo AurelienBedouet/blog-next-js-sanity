@@ -13,7 +13,14 @@ interface Post extends Base {
   mainImage: Image;
   slug: Slug;
   title: string;
-  description: string;
+  tldr: Block[];
+  publishedAt: string;
+  related?: {
+    title: string;
+    slug: Slug;
+    _id: string;
+    mainImage: Image;
+  }[];
 }
 
 interface Author extends Base {
